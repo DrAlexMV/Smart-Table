@@ -1,4 +1,4 @@
-angular.module('smartTable.templates', ['partials/defaultCell.html', 'partials/defaultHeader.html', 'partials/editableCell.html', 'partials/globalSearchCell.html', 'partials/pagination.html', 'partials/selectAllCheckbox.html', 'partials/selectionCheckbox.html', 'partials/smartTable.html']);
+angular.module('smartTable.templates', ['partials/defaultCell.html', 'partials/defaultHeader.html', 'partials/editableCell.html', 'partials/globalSearchCell.html', 'partials/pagination.html', 'partials/selectAllCheckbox.html', 'partials/selectionCheckbox.html', 'partials/smartTable.html', 'partials/tabs.html']);
 
 angular.module("partials/defaultCell.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/defaultCell.html",
@@ -23,18 +23,37 @@ angular.module("partials/editableCell.html", []).run(["$templateCache", function
 
 angular.module("partials/globalSearchCell.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/globalSearchCell.html",
-    "<label>Search :</label>\n" +
-    "<input type=\"text\" ng-model=\"searchValue\"/>");
+    "<div class='row well well-small'>\n" +
+    "	<div class='input-group col-lg-4'>\n" +
+    "		<span class='input-group-btn'>\n" +
+    "			<button popover-placement='bottom' class='btn btn-info'>\n" +
+    "				<span class='glyphicon glyphicon-search'></span>\n" +
+    "			</button>\n" +
+    "		</span>\n" +
+    "		<input type=\"text\" class='form-control' ng-model=\"searchValue\">\n" +
+    "	</div>\n" +
+    "	<div class='col-lg-7'>\n" +
+    "		<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>\n" +
+    "			<span class='glyphicon glyphicon-plus'></span>\n" +
+    "		</button>\n" +
+    "	</div>\n" +
+    "	<div class='col-lg-1'>\n" +
+    "		<button ng-click=\"removeButtonPressed()\" class='btn btn-danger pull-right'>\n" +
+    "			<span class='glyphicon glyphicon-remove'></span>\n" +
+    "		</button>		\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("partials/pagination.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/pagination.html",
-    "<div class=\"pagination\">\n" +
-    "    <ul>\n" +
-    "        <li ng-repeat=\"page in pages\" ng-class=\"{active: page.active, disabled: page.disabled}\"><a\n" +
-    "                ng-click=\"selectPage(page.number)\">{{page.text}}</a></li>\n" +
-    "    </ul>\n" +
-    "</div> ");
+    "<ul class='pagination'>\n" +
+    "    <li ng-repeat=\"page in pages\" ng-class=\"{active: page.active, disabled: page.disabled}\">\n" +
+    "    	<a ng-click=\"selectPage(page.number)\">{{page.text}}</a>\n" +
+    "    </li>\n" +
+    "</ul>\n" +
+    "");
 }]);
 
 angular.module("partials/selectAllCheckbox.html", []).run(["$templateCache", function($templateCache) {
@@ -53,6 +72,10 @@ angular.module("partials/smartTable.html", []).run(["$templateCache", function($
     "    <thead>\n" +
     "    <tr class=\"smart-table-global-search-row\" ng-show=\"isGlobalSearchActivated\">\n" +
     "        <td class=\"smart-table-global-search\" column-span=\"{{columns.length}}\" colspan=\"{{columnSpan}}\">\n" +
+    "        </td>\n" +
+    "    </tr>\n" +
+    "    <tr class=\"smart-table-tabs-row\" ng-show=\"areTabsActivated\">\n" +
+    "        <td class=\"smart-table-tabs\" column-span=\"{{columns.length}}\" colspan=\"{{columnSpan}}\">\n" +
     "        </td>\n" +
     "    </tr>\n" +
     "    <tr class=\"smart-table-header-row\">\n" +
@@ -77,5 +100,44 @@ angular.module("partials/smartTable.html", []).run(["$templateCache", function($
     "</table>\n" +
     "\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("partials/tabs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/tabs.html",
+    "<tabset>\n" +
+    "	<tab>\n" +
+    "		<tab-heading>\n" +
+    "				<h4>\n" +
+    "					<p>\n" +
+    "						<span class='glyphicon glyphicon-list-alt'></span>\n" +
+    "						All\n" +
+    "					</p>\n" +
+    "				</h4>\n" +
+    "		</tab-heading>\n" +
+    "	</tab>\n" +
+    "	<tab>\n" +
+    "		<tab-heading>\n" +
+    "				<h4>\n" +
+    "					<p class='text-warning'>\n" +
+    "						<span class='glyphicon glyphicon-bell'></span>\n" +
+    "						Alarm\n" +
+    "					</p>\n" +
+    "				</h4>\n" +
+    "		</tab-heading>\n" +
+    "	</tab>\n" +
+    "	<tab>\n" +
+    "		<tab-heading>\n" +
+    "			<div class='col-md-4'>\n" +
+    "				<h4>\n" +
+    "					<p class='text-danger'>\n" +
+    "						<span class='glyphicon glyphicon-warning-sign'></span>\n" +
+    "						Warning	\n" +
+    "					</p>\n" +
+    "				</h4>\n" +
+    "			</div>\n" +
+    "		</tab-heading>\n" +
+    "	</tab>\n" +
+    "</tabset>\n" +
     "");
 }]);

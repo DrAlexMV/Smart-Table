@@ -6,6 +6,7 @@
         .constant('DefaultTableConfiguration', {
             selectionMode: 'none',
             isGlobalSearchActivated: false,
+            areTabsActivated: false,
             displaySelectionCheckbox: false,
             isPaginationEnabled: true,
             itemsByPage: 10,

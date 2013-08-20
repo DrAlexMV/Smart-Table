@@ -121,7 +121,7 @@
         .directive('smartTableGlobalSearch', ['templateUrlList', function (templateList) {
             return {
                 restrict: 'C',
-                require: '^smartTable',
+            require: '^smartTable',
                 scope: {
                     columnSpan: '@'
                 },
@@ -130,11 +130,32 @@
                 link: function (scope, element, attr, ctrl) {
 
                     scope.searchValue = '';
+                    scope.addButtonPressed = function() {
+                        scope.$emit('addButtonPressed');
+                    };
+
+                    scope.removeButtonPressed = function() {
+                        scope.$emit('removeButtonPressed');
+                    };
 
                     scope.$watch('searchValue', function (value) {
                         //todo perf improvement only filter on blur ?
                         ctrl.search(value);
                     });
+                }
+            }
+        }])
+        .directive('smartTableTabs', ['templateUrlList', function(templateList) {
+            return {
+                restrict: 'C',
+                require: '^smartTable',
+                scope: {
+                   columnSpan: '@' 
+                },
+                templateUrl: templateList.smartTableTabs,
+                replace: false,
+                link: function(scope, element, attr, ctrl) {
+
                 }
             }
         }])

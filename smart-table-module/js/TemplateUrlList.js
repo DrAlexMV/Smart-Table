@@ -4,6 +4,7 @@
         .constant('templateUrlList', {
             smartTable: 'partials/smartTable.html',
             smartTableGlobalSearch: 'partials/globalSearchCell.html',
+            smartTableTabs: 'partials/tabs.html',
             editableCell: 'partials/editableCell.html',
             selectionCheckbox: 'partials/selectionCheckbox.html',
             selectAllCheckbox: 'partials/selectAllCheckbox.html',

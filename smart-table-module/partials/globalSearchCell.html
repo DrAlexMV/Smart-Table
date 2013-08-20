@@ -1,2 +1,20 @@
-<label>Search :</label>
-<input type="text" ng-model="searchValue"/>
+<div class='row well well-small'>
+	<div class='input-group col-lg-4'>
+		<span class='input-group-btn'>
+			<button popover-placement='bottom' class='btn btn-info'>
+				<span class='glyphicon glyphicon-search'></span>
+			</button>
+		</span>
+		<input type="text" class='form-control' ng-model="searchValue">
+	</div>
+	<div class='col-lg-7'>
+		<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>
+			<span class='glyphicon glyphicon-plus'></span>
+		</button>
+	</div>
+	<div class='col-lg-1'>
+		<button ng-click="removeButtonPressed()" class='btn btn-danger pull-right'>
+			<span class='glyphicon glyphicon-remove'></span>
+		</button>		
+	</div>
+</div>
