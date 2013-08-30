@@ -85,7 +85,7 @@ angular.module("partials/smartTable.html", []).run(["$templateCache", function($
     "    </tr>\n" +
     "    </thead>\n" +
     "    <tbody>\n" +
-    "    <tr ng-repeat=\"dataRow in displayedCollection\" ng-class=\"{selected:dataRow.isSelected}\"\n" +
+    "    <tr ng-repeat=\"dataRow in displayedCollection\" ng-class=\"{selected:dataRow.isSelected, danger:dataRow.isDanger}\"\n" +
     "        class=\"smart-table-data-row\">\n" +
     "        <td ng-repeat=\"column in columns\" class=\"smart-table-data-cell {{column.cellClass}}\"></td>\n" +
     "    </tr>\n" +
@@ -108,34 +108,32 @@ angular.module("partials/tabs.html", []).run(["$templateCache", function($templa
     "<tabset>\n" +
     "	<tab>\n" +
     "		<tab-heading>\n" +
-    "				<h4>\n" +
+    "				<h5>\n" +
     "					<p>\n" +
     "						<span class='glyphicon glyphicon-list-alt'></span>\n" +
     "						All\n" +
     "					</p>\n" +
-    "				</h4>\n" +
+    "				</h5>\n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
     "	<tab>\n" +
     "		<tab-heading>\n" +
-    "				<h4>\n" +
+    "				<h5>\n" +
     "					<p class='text-warning'>\n" +
     "						<span class='glyphicon glyphicon-bell'></span>\n" +
     "						Alarm\n" +
     "					</p>\n" +
-    "				</h4>\n" +
+    "				</h5>\n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
     "	<tab>\n" +
     "		<tab-heading>\n" +
-    "			<div class='col-md-4'>\n" +
-    "				<h4>\n" +
-    "					<p class='text-danger'>\n" +
-    "						<span class='glyphicon glyphicon-warning-sign'></span>\n" +
-    "						Warning	\n" +
-    "					</p>\n" +
-    "				</h4>\n" +
-    "			</div>\n" +
+    "			<h5>\n" +
+    "				<p class='text-danger'>\n" +
+    "					<span class='glyphicon glyphicon-warning-sign'></span>\n" +
+    "					Warning	\n" +
+    "				</p>\n" +
+    "			</h5>\n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
     "</tabset>\n" +
