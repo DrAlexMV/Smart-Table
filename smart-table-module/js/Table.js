@@ -152,7 +152,6 @@
                     predicate[scope.columns[j].map] = scope.columns[j].filterPredicate;
                 }
                 scope.displayedCollection = this.pipe(scope.dataCollection);
-
             };
 
             /**

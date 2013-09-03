@@ -183,6 +183,10 @@
                 link: function (scope, element, attr, ctrl) {
 
                     scope.searchValue = '';
+                    scope.refreshButtonPressed = function() {
+                        scope.$emit('refreshButtonPressed');
+                    };
+
                     scope.addButtonPressed = function() {
                         scope.$emit('addButtonPressed');
                     };
@@ -208,7 +212,17 @@
                 templateUrl: templateList.smartTableTabs,
                 replace: false,
                 link: function(scope, element, attr, ctrl) {
+                    scope.allTabSelected = function() {
+                        scope.$emit('allTabSelected');
+                    };
 
+                    scope.alarmTabSelected = function() {
+                        scope.$emit('alarmTabSelected');
+                    };
+
+                    scope.warningTabSelected = function() {
+                        scope.$emit('warningTabSelected');
+                    };
                 }
             }
         }])
@@ -500,7 +514,6 @@
                     predicate[scope.columns[j].map] = scope.columns[j].filterPredicate;
                 }
                 scope.displayedCollection = this.pipe(scope.dataCollection);
-
             };
 
             /**
@@ -653,23 +666,34 @@ angular.module("partials/editableCell.html", []).run(["$templateCache", function
 angular.module("partials/globalSearchCell.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/globalSearchCell.html",
     "<div class='row well well-small'>\n" +
-    "	<div class='input-group col-lg-4'>\n" +
-    "		<span class='input-group-btn'>\n" +
-    "			<button popover-placement='bottom' class='btn btn-info'>\n" +
-    "				<span class='glyphicon glyphicon-search'></span>\n" +
+    "	<div class='col-md-9 pull-left'>\n" +
+    "		<div class='col-md-6'>\n" +
+    "			<div class='input-group'>\n" +
+    "				<span class='input-group-btn'>\n" +
+    "					<button popover-placement='bottom' class='btn btn-info'>\n" +
+    "						<i class='icon-search'></i>\n" +
+    "					</button>\n" +
+    "				</span>\n" +
+    "				<input type=\"text\" class='form-control' ng-model=\"searchValue\">\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "	<div class='col-md-3 pull-right'>\n" +
+    "		<div class='col-sm-3 col-md-3'>\n" +
+    "			<button ng-click='refreshButtonPressed()' class='btn btn-primary pull-right'>\n" +
+    "				<i class='icon-refresh icon-large'></i>\n" +
     "			</button>\n" +
-    "		</span>\n" +
-    "		<input type=\"text\" class='form-control' ng-model=\"searchValue\">\n" +
-    "	</div>\n" +
-    "	<div class='col-lg-7'>\n" +
-    "		<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>\n" +
-    "			<span class='glyphicon glyphicon-plus'></span>\n" +
-    "		</button>\n" +
-    "	</div>\n" +
-    "	<div class='col-lg-1'>\n" +
-    "		<button ng-click=\"removeButtonPressed()\" class='btn btn-danger pull-right'>\n" +
-    "			<span class='glyphicon glyphicon-remove'></span>\n" +
-    "		</button>		\n" +
+    "		</div>\n" +
+    "		<div class='col-sm-3 col-md-3'>\n" +
+    "			<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>\n" +
+    "				<i class='icon-plus icon-large'></i>\n" +
+    "			</button>\n" +
+    "		</div>\n" +
+    "		<div class='col-sm-3 col-md-3'>\n" +
+    "			<button ng-click=\"removeButtonPressed()\" class='btn btn-danger pull-right'>\n" +
+    "				<i class='icon-remove icon-large'></i>\n" +
+    "			</button>		\n" +
+    "		</div>\n" +
     "	</div>\n" +
     "</div>\n" +
     "");
@@ -735,34 +759,22 @@ angular.module("partials/smartTable.html", []).run(["$templateCache", function($
 angular.module("partials/tabs.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/tabs.html",
     "<tabset>\n" +
-    "	<tab>\n" +
+    "	<tab select='allTabSelected'>\n" +
     "		<tab-heading>\n" +
-    "				<h5>\n" +
-    "					<p>\n" +
-    "						<span class='glyphicon glyphicon-list-alt'></span>\n" +
-    "						All\n" +
-    "					</p>\n" +
-    "				</h5>\n" +
+    "			<i class='icon-table'></i>\n" +
+    "			All\n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
-    "	<tab>\n" +
+    "	<tab select='alarmTabSelected()'>\n" +
     "		<tab-heading>\n" +
-    "				<h5>\n" +
-    "					<p class='text-warning'>\n" +
-    "						<span class='glyphicon glyphicon-bell'></span>\n" +
-    "						Alarm\n" +
-    "					</p>\n" +
-    "				</h5>\n" +
+    "			<i class='icon-bell'></i>\n" +
+    "			Alarm \n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
-    "	<tab>\n" +
+    "	<tab select='warningTabSelected()'>\n" +
     "		<tab-heading>\n" +
-    "			<h5>\n" +
-    "				<p class='text-danger'>\n" +
-    "					<span class='glyphicon glyphicon-warning-sign'></span>\n" +
-    "					Warning	\n" +
-    "				</p>\n" +
-    "			</h5>\n" +
+    "			<i class='icon-warning-sign'></i>\n" +
+    "			Warning\n" +
     "		</tab-heading>\n" +
     "	</tab>\n" +
     "</tabset>\n" +

@@ -1,20 +1,31 @@
 <div class='row well well-small'>
-	<div class='input-group col-lg-4'>
-		<span class='input-group-btn'>
-			<button popover-placement='bottom' class='btn btn-info'>
-				<span class='glyphicon glyphicon-search'></span>
+	<div class='col-md-9 pull-left'>
+		<div class='col-md-6'>
+			<div class='input-group'>
+				<span class='input-group-btn'>
+					<button popover-placement='bottom' class='btn btn-info'>
+						<i class='icon-search'></i>
+					</button>
+				</span>
+				<input type="text" class='form-control' ng-model="searchValue">
+			</div>
+		</div>
+	</div>
+	<div class='col-md-3 pull-right'>
+		<div class='col-sm-3 col-md-3'>
+			<button ng-click='refreshButtonPressed()' class='btn btn-primary pull-right'>
+				<i class='icon-refresh icon-large'></i>
 			</button>
-		</span>
-		<input type="text" class='form-control' ng-model="searchValue">
-	</div>
-	<div class='col-lg-7'>
-		<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>
-			<span class='glyphicon glyphicon-plus'></span>
-		</button>
-	</div>
-	<div class='col-lg-1'>
-		<button ng-click="removeButtonPressed()" class='btn btn-danger pull-right'>
-			<span class='glyphicon glyphicon-remove'></span>
-		</button>		
+		</div>
+		<div class='col-sm-3 col-md-3'>
+			<button ng-click='addButtonPressed()' class='btn btn-success pull-right'>
+				<i class='icon-plus icon-large'></i>
+			</button>
+		</div>
+		<div class='col-sm-3 col-md-3'>
+			<button ng-click="removeButtonPressed()" class='btn btn-danger pull-right'>
+				<i class='icon-remove icon-large'></i>
+			</button>		
+		</div>
 	</div>
 </div>

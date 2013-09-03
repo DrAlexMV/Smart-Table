@@ -130,6 +130,10 @@
                 link: function (scope, element, attr, ctrl) {
 
                     scope.searchValue = '';
+                    scope.refreshButtonPressed = function() {
+                        scope.$emit('refreshButtonPressed');
+                    };
+
                     scope.addButtonPressed = function() {
                         scope.$emit('addButtonPressed');
                     };
@@ -155,7 +159,17 @@
                 templateUrl: templateList.smartTableTabs,
                 replace: false,
                 link: function(scope, element, attr, ctrl) {
+                    scope.allTabSelected = function() {
+                        scope.$emit('allTabSelected');
+                    };
 
+                    scope.alarmTabSelected = function() {
+                        scope.$emit('alarmTabSelected');
+                    };
+
+                    scope.warningTabSelected = function() {
+                        scope.$emit('warningTabSelected');
+                    };
                 }
             }
         }])
